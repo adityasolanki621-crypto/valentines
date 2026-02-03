@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+    }
+
+    /* 🌹 Rose petals + hearts */
+    .petals span {
+        position: absolute;
+        top: -50px;
+        font-size: 22px;
+        animation: fall linear infinite;
+        opacity: 0.9;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(120vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    .box {
+        position: relative;
+        background: rgba(255,255,255,0.22);
+        padding: 40px 30px;
+        border-radius: 30px;
+        width: 92%;
+        max-width: 430px;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        z-index: 2;
+    }
+
+    /* FRONT PAGE NAME ONLY */
+    .name {
+        font-family: 'Great Vibes', cursive;
+        font-size: 48px;
+        margin-bottom: 10px;
+        animation: glowText 2s infinite alternate;
+    }
+
+    @keyframes glowText {
+        from { text-shadow: 0 0 10px #fff; }
+        to   { text-shadow: 0 0 25px #ffd1dc, 0 0 40px #ff4b7d; }
+    }
+
+    .question {
+        margin-bottom: 25px;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 80px;
+    }
+
+    button {
+        padding: 12px 28px;
+        font-size: 18px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #yes {
+        background: white;
+        color: #ff4b7d;
+        font-weight: 600;
+    }
+
+    #no {
+        background: rgba(0,0,0,0.8);
+        color: white;
+        position: absolute;
+    }
+
+    /* RESULT */
+    .result {
+        display: none;
+        margin-top: 25px;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .yay {
+        font-size: 32px;
+        font-weight: 500;
+    }
+
+    .love {
+        font-family: 'Great Vibes', cursive;
+        font-size: 52px;
+        margin-top: 10px;
+        animation: glowText 2s infinite alternate;
+    }
+
+    video {
+        width: 50%;
+        border-radius: 18px;
+        margin: 15px 0;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- 🌹 Rose petals + hearts background -->
+<div class="petals">
+    <span style="left:5%;  animation-duration:10s">🌹</span>
+    <span style="left:15%; animation-duration:12s">❤️</span>
+    <span style="left:25%; animation-duration:9s">🌹</span>
+    <span style="left:35%; animation-duration:11s">💖</span>
+    <span style="left:45%; animation-duration:13s">🌹</span>
+    <span style="left:55%; animation-duration:10s">💘</span>
+    <span style="left:65%; animation-duration:12s">🌹</span>
+    <span style="left:75%; animation-duration:9s">❤️</span>
+    <span style="left:85%; animation-duration:11s">🌹</span>
+    <span style="left:95%; animation-duration:13s">💞</span>
+</div>
+
+<!-- 🎶 Background Music (mobile-safe) -->
+<audio id="bgMusic" loop>
+    <source src="C:\Users\SIS\OneDrive\Desktop\WhatsApp Audio 2026-02-03 at 18.57.26.mpeg" type="audio/mpeg">
+</audio>
+
+<div class="box">
+
+    <!-- FRONT PAGE -->
+    <div class="name" id="name">Chetna 💖</div>
+    <div class="question" id="question">Will you be my Valentine?</div>
+
+    <div class="buttons" id="buttons">
+        <button id="yes">Yes 😍</button>
+        <button id="no">No 🙈</button>
+    </div>
+
+    <!-- RESULT PAGE -->
+    <div class="result" id="result">
+        <div class="yay">Best decision ever Chetna💖😘</div>
+      
+
+        <video autoplay muted loop>
+            <source src= "C:\Users\SIS\OneDrive\Desktop\WhatsApp Video 2026-02-03 at 19.12.24.mp4" type="video/mp4">
+        </video>
+
+        <div class="love">I Love You ❤️</div>
+    </div>
+
+</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const result = document.getElementById("result");
+    const question = document.getElementById("question");
+    const buttons = document.getElementById("buttons");
+    const name = document.getElementById("name");
+    const music = document.getElementById("bgMusic");
+
+    function moveNo() {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 60 - 30;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    yesBtn.addEventListener("click", () => {
+        // 🎶 GUARANTEED MUSIC PLAY (user interaction)
+        music.volume = 0.6;
+        music.play();
+
+        name.style.display = "none";
+        question.style.display = "none";
+        buttons.style.display = "none";
+        result.style.display = "block";
+    });
+</script>
+
+</body>
+</html>
